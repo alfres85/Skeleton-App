@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActionsByMenuLinkAndProfileTable extends Migration
+class CreateActionsByMenuLinkByGroupTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateActionsByMenuLinkAndProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('actions_by_menu_link_and_profile', function (Blueprint $table) {
+        Schema::create('actions_by_menu_link_by_group', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
+            $table->foreignId('group_id')->constrained('groups')->onDelete('cascade');
             $table->foreignId('menu_link_id')->constrained('menu_links')->onDelete('cascade');
             $table->foreignId('action_id')->constrained('actions')->onDelete('cascade');
             $table->boolean('is_deleted')->default(false);
@@ -30,6 +30,6 @@ class CreateActionsByMenuLinkAndProfileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actions_by_menu_link_and_profile');
+        Schema::dropIfExists('actions_by_menu_link_by_group');
     }
 }
